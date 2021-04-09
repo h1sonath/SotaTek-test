@@ -1,0 +1,159 @@
+.full-width {
+	width: 100%;
+}
+
+.full-height {
+	height: 100%;
+}
+
+.pull-right {
+	float: right;
+}
+
+.pull-left {
+	float: left;
+}
+
+.color--white {
+	color: $color--white;
+}
+
+.relative {
+	position: relative;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.text-align-justify {
+	text-align: justify;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.user-select-none {
+	user-select: none;
+}
+
+.has-dashed {
+	border: 1px dashed #2e4493;
+	box-sizing: border-box;
+	border-radius: 4px;
+}
+
+.has-border {
+	border: 1px solid black;
+	border-radius: 1px;
+}
+.has-underline {
+  border-bottom: 1px solid black;
+  border-radius: 1px;
+}
+
+.has-box-shadow {
+	box-shadow: 0px 1px 3px rgba(62, 62, 60, 0.2);
+	border-radius: 4px;
+}
+
+.ellipsis-one-line {
+	@include ellipsisInLines(1);
+}
+
+.background-gray {
+	background: #f8f8f8;
+	background-color: #f8f8f8 !important;
+}
+
+.bg-white {
+	background: #fff;
+}
+
+.bg-transparent {
+	background: transparent;
+}
+
+
+.table-cell-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.v-tooltip__content {
+	opacity: 0.9 !important;
+	background-color: white !important;
+	border: 0.5px solid black;
+}
+
+.pointer-events-none {
+	pointer-events: none;
+}
+.text-select-none {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.min-height-inherit {
+	min-height: inherit;
+}
+
+.action-hover:hover {
+	color: blue !important;
+	i {
+		color: blue !important;
+	}
+}
+
+.course-syllabus__max-width {
+	max-width: 270px;
+}
+
+.v-card__actions {
+	padding: 0 24px 16px 24px;
+}
+
+.v-tabs-bar {
+	border-bottom: 1px solid #e6e4eb;
+}
+
+.base-content__max-width {
+	max-width: 1140px;
+}
+
+.letter-spacing-0 {
+	letter-spacing: 0;
+}
+
+.v-tabs-bar {
+  border-bottom: 1px solid #e6e4eb;
+}
+
+.action-header {
+  position: absolute;
+  right: 0;
+  width: calc(100% - 56px);
+  height: 49px;
+  z-index: 2;
+  background: #f2f2f2;
+  border: 1px solid #e6e4eb;
+  border-left-color: #f2f2f2;
+	border-radius: 4px 4px 0 0;
+}
+
+.sticky-section {
+	position: sticky;
+	z-index: 2;
+	top: 0;
+}
+
+.page-content .theme--light.v-tabs > .v-tabs-bar {
+	position: sticky;
+	z-index: 2;
+	top: 124px;
+}
