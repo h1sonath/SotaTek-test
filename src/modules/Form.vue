@@ -27,7 +27,7 @@
 					ref="menu"
 					v-model="menu"
 					:close-on-content-click="false"
-					:return-value.sync="date"
+					:return-value.sync="dueDate"
 					transition="scale-transition"
 					offset-y
 					min-width="auto"
@@ -35,14 +35,14 @@
 					<template v-slot:activator="{on, attrs}">
 						<v-text-field
 							outlined
-							v-model="date"
+							v-model="dueDate"
 							append-icon="mdi-calendar"
 							v-bind="attrs"
 							v-on="on"
 						></v-text-field>
 					</template>
 					<v-date-picker
-						v-model="date"
+						v-model="dueDate"
 						no-title
 						scrollable
 						:allowed-dates="getAllowedDates"
@@ -51,7 +51,7 @@
 						<v-btn text color="primary" @click="menu = false">
 							Cancel
 						</v-btn>
-						<v-btn text color="primary" @click="$refs.menu.save(date)">
+						<v-btn text color="primary" @click="$refs.menu.save(dueDate)">
 							OK
 						</v-btn>
 					</v-date-picker>
@@ -90,27 +90,36 @@ export default {
 	data: () => ({
 		taskName: '',
 		date: new Date().toISOString().substr(0, 10),
+		dueDate: new Date().toISOString().substr(0, 10),
 		menu: false,
 		priorityItems: ['Low', 'Normal', 'High'],
 		priority: 'Normal',
-		description: ''
+		description: '',
+    taskID: ''
 		// search: '',
 	}),
 	computed: {
 		taskData() {
 			return {
+				id: this.taskID,
 				taskName: this.taskName,
 				description: this.description,
-				dueDate: this.date,
+				dueDate: this.dueDate,
 				priority: this.priority
 			}
 		}
 	},
 	methods: {
+		genID() {
+			this.taskID = Math.random()
+				.toString(36)
+				.substr(2, 9)
+		},
 		getAllowedDates(date) {
 			if (date >= this.date) return true
 		},
 		addOrUpdate() {
+      this.genID()
 			this.$emit('add-or-update', this.taskData)
 		}
 	},

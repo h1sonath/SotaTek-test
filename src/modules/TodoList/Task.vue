@@ -4,7 +4,7 @@
 			class="pa-3 has-border d-flex flex-row align-center justify-space-between"
 		>
 			<div class="d-flex flex-row align-center">
-				<v-checkbox v-model="checkbox"></v-checkbox>
+				<v-checkbox v-model="checkedTasks" :value="task"></v-checkbox>
 				<div>{{ task.taskName }}</div>
 			</div>
 			<div>
@@ -14,7 +14,7 @@
 					>
 				</span>
 				<span class="pa-3"
-					><v-btn dark color="#FF3D00" @click="showDetail = !showDetail"
+					><v-btn dark color="#FF3D00" @click="removeCurrentTask(task)"
 						>Remove</v-btn
 					>
 				</span>
@@ -22,8 +22,8 @@
 		</div>
 		<div>
 			<Form
-        @add-or-update="data => updateTask(data)"
-				class="has-border pa-6"
+				@add-or-update="data => updateTask(data)"
+				class="has-border pa-6 task-form"
 				v-if="showDetail"
 				btnText="Update"
 				:getDescription="task.description"
@@ -45,14 +45,28 @@ export default {
 	},
 	data() {
 		return {
-			checkbox: true,
-			showDetail: false
+			checkedTasks: [],
+			showDetail: false,
+			tasks: []
 		}
 	},
-  methods: {
-    updateTask(task){
-      this.$emit('update-task', task)
-    }
-  }
+	methods: {
+		removeCurrentTask(task) {
+			this.tasks = JSON.parse(window.localStorage.getItem('to-do-list-tasks'))
+      const filteredTasks = this.tasks.filter(v => {
+        return v.id !== task.id
+      })
+			window.localStorage.setItem('to-do-list-tasks', JSON.stringify(filteredTasks))
+      this.$emit('remove-task')
+		},
+		updateTask(task) {
+			this.$emit('update-task', task)
+		}
+	}
 }
 </script>
+<style scoped>
+.task-form {
+	border-top: 0px;
+}
+</style>
