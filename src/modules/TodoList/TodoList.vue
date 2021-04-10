@@ -22,8 +22,7 @@
 				/>
 			</div>
 		</div>
-		<div
-			v-if="checkedBoxes && checkedBoxes.length"
+		<div v-if="checkedBoxes && checkedBoxes.length"
 			class="pa-3 has-border d-flex flex-row align-center justify-space-between grey"
 		>
 			<div>
@@ -79,7 +78,7 @@ export default {
 			for (let i = 0; i < this.taskList.length; i++) {
 				this.$refs.checkedtasks[i].removeCheckedTask()
 			}
-
+      this.checkedBoxes =[]
 		},
 		searchName() {
 			this.taskList.find(task => {
