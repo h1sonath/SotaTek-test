@@ -4,7 +4,7 @@
 			<Header header="New Task" />
 		</div>
 		<div>
-			<Form btnText="Add" @add-or-update="data => addTask(data)" />
+			<Form btnText="Add" @add="data => addTask(data)" />
 		</div>
 	</div>
 </template>

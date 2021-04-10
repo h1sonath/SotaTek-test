@@ -7,7 +7,6 @@
 			placeholder="Add new task ..."
 		></v-text-field>
 		<v-text-field
-			disabled
 			v-if="btnText === `Update`"
 			outlined
 			v-model="taskName"
@@ -82,6 +81,7 @@
 export default {
 	props: {
 		btnText: String,
+		getID: String,
 		getDescription: String,
 		getTaskName: String,
 		getDueDate: String,
@@ -95,7 +95,7 @@ export default {
 		priorityItems: ['Low', 'Normal', 'High'],
 		priority: 'Normal',
 		description: '',
-    taskID: ''
+		taskID: ''
 		// search: '',
 	}),
 	computed: {
@@ -119,8 +119,12 @@ export default {
 			if (date >= this.date) return true
 		},
 		addOrUpdate() {
-      this.genID()
-			this.$emit('add-or-update', this.taskData)
+			if (this.btnText === 'Add') {
+				this.genID()
+				this.$emit('add', this.taskData)
+			} else {
+				this.$emit('update', this.taskData)
+			}
 		}
 	},
 	watch: {
@@ -152,6 +156,14 @@ export default {
 			handler(val) {
 				if (val) {
 					this.priority = val
+				}
+			},
+			immediate: true
+		},
+		getID: {
+			handler(val) {
+				if (val) {
+					this.taskID = val
 				}
 			},
 			immediate: true
