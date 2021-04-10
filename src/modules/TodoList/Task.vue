@@ -7,7 +7,7 @@
 				<v-checkbox v-model="checked" @click="changeCheckBox"></v-checkbox>
 				<div>{{ task.taskName }}</div>
 			</div>
-			<div>
+			<div class='d-flex justify-center'>
 				<span class="pa-3"
 					><v-btn
 						width="100px"
