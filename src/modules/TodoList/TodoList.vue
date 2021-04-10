@@ -22,7 +22,8 @@
 				/>
 			</div>
 		</div>
-		<div v-if="checkedBoxes && checkedBoxes.length"
+		<div
+			v-if="checkedBoxes && checkedBoxes.length"
 			class="pa-3 has-border d-flex flex-row align-center justify-space-between grey"
 		>
 			<div>
@@ -78,7 +79,7 @@ export default {
 			for (let i = 0; i < this.taskList.length; i++) {
 				this.$refs.checkedtasks[i].removeCheckedTask()
 			}
-      this.checkedBoxes =[]
+			this.checkedBoxes = []
 		},
 		searchName() {
 			this.taskList.find(task => {
@@ -89,14 +90,19 @@ export default {
 			this.$emit('remove-task')
 		},
 		updateTask(data) {
-			this.updatingTasks = this.taskList.filter(v => {
-				return v.id !== data.id
-			})
-			this.updatingTasks.push(data)
-			window.localStorage.setItem(
-				'to-do-list-tasks',
-				JSON.stringify(this.updatingTasks)
-			)
+			try {
+				this.updatingTasks = this.taskList.filter(v => {
+					return v.id !== data.id
+				})
+				this.updatingTasks.push(data)
+				window.localStorage.setItem(
+					'to-do-list-tasks',
+					JSON.stringify(this.updatingTasks)
+				)
+        alert('Updated')
+			} catch (error) {
+        alert(error)
+      }
 		}
 	},
 	watch: {
